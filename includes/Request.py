@@ -10,7 +10,7 @@ class Request():
 
     def setId(self, id):
         self.id = id
-        pass
+        return self
 
     def getGridLocation(self):
         return self.gridLocation
