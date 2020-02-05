@@ -62,7 +62,7 @@ def main():
 
         if(state == states.WAIT):
             equalityFrameCounter = equalityFrameCounter + 1
-            if(equalityFrameCounter > 30):
+            if(equalityFrameCounter > 120):
                 state = states(oldState.value+1)
                 equalityFrameCounter = 0
                 print(a.origin)
@@ -78,7 +78,7 @@ def main():
 
             frame = aruco.drawDetectedMarkers(frame, a.corners)
 
-            if(equalityFrameCounter == 5):
+            if(equalityFrameCounter == 10):
                 equalityFrameCounter = 0
                 oldState = states.CALIBRATE
                 state = states.WAIT
@@ -93,6 +93,7 @@ def main():
 
         font = cv2.FONT_HERSHEY_SIMPLEX
 
+        frame = cv2.flip(frame, -1)
 
         frame = cv2.putText(frame, str(state.name), (50, 75), font, 2, (255,0,0), 1, cv2.LINE_AA)
         frame = cv2.putText(frame, str(equalityFrameCounter), (50, 125), font, 2, (0,0,255), 1, cv2.LINE_AA)
